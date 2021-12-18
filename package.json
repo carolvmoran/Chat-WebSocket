@@ -1,0 +1,30 @@
+{
+  "name": "Chat-WebSocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm install && nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carolvmoran/Chat-WebSocket.git"
+  },
+  "keywords": [],
+  "author": "CarolMoran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carolvmoran/Chat-WebSocket/issues"
+  },
+  "homepage": "https://github.com/carolvmoran/Chat-WebSocket#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "socket.io": "^4.4.0",
+    "sucrase": "^3.20.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
