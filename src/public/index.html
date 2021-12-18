@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+    <script>
+        const socket = io("http://localhost:3333/", {
+            transports: ["websocket"]
+        });
+        
+        socket.on("teste", (res) => {
+            writeMessage(res.user, res.mesage);
+        });
+
+        function send() {
+            const user = document.querySelector("#usuario").value;
+            const mesage = document.querySelector("#mensagem").value;
+
+            socket.emit("teste", {
+                user, mesage
+            });
+
+            writeMessage("Eu:", mesage)
+        }
+
+        function writeMessage(user, mesage) {
+            let mesagehtml = document.querySelector("#mensagens").innerHTML;
+
+            mesagehtml += `<p><strong>${user}</strong> - ${mesage}</p>`;
+
+            document.querySelector("#mensagens").innerHTML = mesagehtml;
+        }
+    </script>
     <title>Chat</title>
 </head>
 <body>
-    
+    <input type="text" id="usuario" placeholder="Nome de usuário" />
+    <textarea name="Mensagem" id="mensagem" cols="30" rows="10" placeholder="Digite sua mensagem... :)"></textarea>
+    <button onclick="send()">Envie</button>
+    <h3>Conversa:</h3>
+    <div id="mensagens"></div>
 </body>
 </html>
