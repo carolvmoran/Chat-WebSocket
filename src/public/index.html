@@ -14,6 +14,42 @@
             height: 350px;
             overflow: auto;
         }
+        #mensagem {
+            padding: 8px 20px;
+            height: 44px;
+            border-radius: 80px;
+            min-height: unset;
+            scrollbar-width: thin;
+            width: 90%;
+        }
+        #mensagem::-webkit-scrollbar {
+            width: 6px;
+        }
+        #mensagem::-webkit-scrollbar-thumb {
+            background: #e1e1e1;
+            border-radius: 4px;
+            transition: all 300ms;
+        }
+        #mensagem::-webkit-scrollbar-thumb:hover {
+            background: #c2c2c2;
+        }
+        .fundo-conversa {
+            background: url("img/fundo.jpg") center center no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .alert.alert-light.text-end,
+        .alert.alert-success {
+            width: 80%;
+        }
+        .alert.alert-light.text-end {
+            margin: auto 0 20px auto;
+            margin-right: 0;
+        }
     </style>
 
     <script>
@@ -38,7 +74,7 @@
 
         function writeMessage(user, mesage) {
 
-            let bg = user === "Você:" ? "alert-success" : "alert-info text-end"
+            let bg = user === "Você:" ? "alert-success" : "alert-light text-end"
             let mesagehtml = document.querySelector("#mensagens").innerHTML;
 
             mesagehtml += `<div class="alert ${bg}">
@@ -53,24 +89,32 @@
         }
     </script>
 </head>
-<body>
+<body class="fundo-conversa">
     <div class="container">
         <h3 class="mt-4">Chat - WebSocket</h3>
-        <div class="row">
-            <div class="col-4">
-                <label for="usuario">Nome de Usuário:</label>
-                <input class="form-control mb-3 mt-3" type="text" id="usuario" placeholder="Nome de usuário" />
+    </div>
+    <div class="bg-success">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <label for="usuario"></label>
+                    <input class="form-control mb-3 mt-3" type="text" id="usuario" placeholder="Seu nome..." />
+                </div>
             </div>
         </div>
-        <h3 class="m-3">Conversa:</h3>
-        <div class="card">
-            <div class="card-body" id="mensagens"></div>
-            <div class="card-footer">
-                <textarea class="form-control" name="Mensagem" id="mensagem" cols="30" rows="10" placeholder="Digite sua mensagem... :)"></textarea>
-                <button class="btn btn-success w-100 mt-2" onclick="send()">Envie</button>
+    </div>
+    <div>
+        <div class="container">
+            <h3 class="m-3">Conversa:</h3>
+            <div class="card bg-transparent">
+                <div class="card-body bg-transparent" id="mensagens"></div>
+                <div class="card-footer">
+                    <textarea class="form-control" name="Mensagem" id="mensagem" cols="30" rows="10" placeholder="Digite sua mensagem... :)"></textarea>
+                    <button class="btn btn-success w-10" onclick="send()">Envie</button>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </body>
 </html>
